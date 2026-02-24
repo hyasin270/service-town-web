@@ -182,35 +182,50 @@ function App() {
 
       <Divider icon="🔭" />
 
-      {/* Section 7: Observatory */}
+      {/* Section 7: Observatory — Theory of Change */}
       <Section {...sections[6]}>
-        {/* Pyramid layers visual */}
-        <div className="fade-in mb-6">
-          {[
-            { layer: 4, name: 'IMPACT', detail: 'Student Learning Outcomes — target 60%', color: 'bg-gold', width: 'w-[60%]' },
-            { layer: 3, name: 'QUALITY', detail: 'FICO Fidelity Score — target 60%', color: 'bg-red-team', width: 'w-[72%]' },
-            { layer: 2, name: 'ADOPTION', detail: 'Lesson Plan Engagement — target 65%', color: 'bg-blu-team', width: 'w-[84%]' },
-            { layer: 1, name: 'INPUTS', detail: 'Coach Visits + Training Engagement', color: 'bg-dusty', width: 'w-full' },
-          ].map(l => (
-            <div key={l.layer} className={`${l.width} mx-auto mb-2`}>
-              <div className={`${l.color} text-white rounded-lg px-4 py-3 flex items-center justify-between`}>
-                <div className="flex items-center gap-3">
-                  <span className="font-display text-lg opacity-60">L{l.layer}</span>
-                  <span className="font-semibold text-sm">{l.name}</span>
+        {/* Theory of Change flow */}
+        <div className="fade-in mb-8">
+          <p className="font-display text-2xl text-navy tracking-wide mb-1">The Theory of Change</p>
+          <p className="text-navy/60 text-sm mb-5">Each step is a question we need to answer. Track the chain, find the break.</p>
+
+          <div className="space-y-1">
+            {[
+              { num: 1, q: 'Who is the teacher?', what: 'Registration & user management', metric: 'Teachers onboarded, profiles complete', color: 'bg-dusty' },
+              { num: 2, q: 'Who is the student?', what: 'Enrollment & student rostering', metric: 'Students enrolled, names + roll numbers', color: 'bg-dusty' },
+              { num: 3, q: 'Did they show up?', what: 'Attendance tracking', metric: 'Daily presence per student', color: 'bg-blu-team' },
+              { num: 4, q: 'Did the teacher get the lesson plan?', what: 'Lesson plan delivery & engagement', metric: 'LP engagement — target 65%', color: 'bg-blu-team' },
+              { num: 5, q: 'Did she teach it well?', what: 'Classroom observation & coaching', metric: 'FICO fidelity score, coach visits (target: 5/day)', color: 'bg-red-team' },
+              { num: 6, q: 'Did the students learn?', what: 'Assessment & learning outcomes', metric: 'Exam scores, reading fluency (WCPM)', color: 'bg-gold' },
+              { num: 7, q: 'Is the teacher growing?', what: 'Longitudinal improvement tracking', metric: 'Teaching dimension scores, progress over time', color: 'bg-gold' },
+            ].map((step, i) => (
+              <div key={step.num}>
+                <div className="toc-step">
+                  <div className={`toc-num ${step.color}`}>{step.num}</div>
+                  <div className="flex-1 min-w-0">
+                    <p className="font-semibold text-navy text-sm">{step.q}</p>
+                    <p className="text-navy/50 text-xs mt-0.5">{step.what}</p>
+                  </div>
+                  <p className="text-navy/40 text-xs text-right hidden md:block max-w-[200px]">{step.metric}</p>
                 </div>
-                <span className="text-xs text-white/70">{l.detail}</span>
+                {i < 6 && <div className="toc-arrow">↓</div>}
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
 
         <div className="callout-box fade-in mb-6">
           <p className="font-semibold text-navy text-[1.05rem] mb-2">
             When Metrics Disagree
           </p>
-          <p className="text-navy/75 text-[0.95rem] leading-relaxed">
-            The disagreement <em>is</em> the diagnosis. High fidelity + low outcomes → content problem. Low fidelity + low outcomes → coaching problem. Low engagement → adoption problem (fix the product or intensify inputs).
+          <p className="text-navy/75 text-[0.95rem] leading-relaxed mb-2">
+            The disagreement <em>is</em> the diagnosis:
           </p>
+          <ul className="text-navy/70 text-[0.92rem] space-y-1.5">
+            <li><strong>High fidelity + low outcomes</strong> → Content problem (lesson plan material needs revision)</li>
+            <li><strong>Low fidelity + low outcomes</strong> → Coaching problem (intensify visits)</li>
+            <li><strong>Low LP engagement</strong> → Adoption problem (fix the product or increase inputs)</li>
+          </ul>
         </div>
 
         <Quiz quiz={quizzes.diagnosticDesk} />

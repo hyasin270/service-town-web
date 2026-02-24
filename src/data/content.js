@@ -73,17 +73,15 @@ export const sections = [
   {
     id: 'observatory',
     title: 'The Observatory',
-    subtitle: 'How we know if any of it matters in a classroom.',
+    subtitle: 'Data along the theory of change — how we know if any of it matters.',
     image: '/images/s11_metrics_pyramid.jpg',
     paragraphs: [
-      "Before we talk about standards, we need to talk about what we're actually trying to achieve. Everything at Taleemabad traces back to one question: did the student learn?",
-      "But you can't just measure learning outcomes. By the time you discover students in District X scored 20% lower, it's too late. You need leading indicators.",
-      "This is our theory of change, and it works like a pyramid. Layer 1 is Inputs: are coaches visiting schools, are teachers getting training? Layer 2 is Adoption: did the teacher actually use the lesson plan in class? Layer 3 is Quality: the FICO fidelity score — metadata, lesson plan fidelity, teacher performance, student engagement, assessment, coach feedback. Layer 4 is Impact: did the student learn?",
-      "Each layer builds on the one below. You can't have quality without adoption. You can't have adoption without inputs.",
-      "When the metrics disagree, the disagreement is the diagnosis. High fidelity but low outcomes? The lesson plan content needs revision. Low fidelity and low outcomes? Intensify coaching. Low engagement entirely? Fix the inputs or the product."
+      "Everything at Taleemabad traces back to one question: did the student learn? But you can't just measure outcomes. By the time you discover students in District X scored 20% lower, it's too late. You need the whole chain of leading indicators.",
+      "Think of it as a series of questions, each building on the last. Who is the teacher? Who is the student? Did they show up? Did the teacher get the lesson plan? Did she teach it well? Did the students learn? Is the teacher growing over time?",
+      "We expect to measure all of this within our platforms — across 60 database tables, ~1,950 teachers, and 45,000+ daily interactions. When any link breaks, the data tells us where."
     ],
-    pollQuestion: 'Which metrics layer does your team focus on most?',
-    pollOptions: ['Inputs', 'Adoption', 'Quality (FICO)', 'Impact (Outcomes)'],
+    pollQuestion: 'Which part of the theory of change does your team focus on most?',
+    pollOptions: ['Access & registration', 'Lesson plan delivery', 'Teaching quality (FICO)', 'Student outcomes'],
   },
   {
     id: 'evolution',

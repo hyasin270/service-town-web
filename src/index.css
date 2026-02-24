@@ -303,3 +303,95 @@ body {
   transform: rotate(-3deg);
   opacity: 0.8;
 }
+
+/* ---- Sticky notes (comments) ---- */
+
+.sticky-note {
+  position: relative;
+  padding: 16px 18px 20px;
+  min-height: 90px;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  box-shadow: 2px 3px 8px rgba(0,0,0,0.12), 0 1px 3px rgba(0,0,0,0.08);
+  border-radius: 2px;
+}
+
+.sticky-note::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 20px;
+  width: 24px;
+  height: 8px;
+  background: rgba(0,0,0,0.12);
+  border-radius: 0 0 3px 3px;
+}
+
+.sticky-note .sticky-author {
+  font-weight: 700;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 6px;
+  opacity: 0.7;
+}
+
+.sticky-note .sticky-time {
+  position: absolute;
+  bottom: 6px;
+  right: 10px;
+  font-size: 0.65rem;
+  opacity: 0.4;
+}
+
+.sticky-note .sticky-text {
+  font-style: italic;
+  word-break: break-word;
+}
+
+/* Note colors — rotate through these */
+.sticky-yellow  { background: #fff9c4; color: #5d4e00; }
+.sticky-blue    { background: #bbdefb; color: #0d3b66; }
+.sticky-pink    { background: #f8bbd0; color: #6a1b3a; }
+.sticky-green   { background: #c8e6c9; color: #1b5e20; }
+.sticky-orange  { background: #ffe0b2; color: #5d3a00; }
+.sticky-purple  { background: #e1bee7; color: #4a148c; }
+
+/* ---- Theory of Change flow ---- */
+
+.toc-step {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 16px;
+  border-radius: 8px;
+  background: white;
+  border: 1px solid #e0d5c1;
+  transition: all 0.2s;
+}
+
+.toc-step:hover {
+  border-color: var(--color-gold);
+  box-shadow: 0 2px 8px rgba(212, 168, 67, 0.15);
+}
+
+.toc-step .toc-num {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.8rem;
+  color: white;
+  flex-shrink: 0;
+}
+
+.toc-arrow {
+  text-align: center;
+  color: var(--color-dusty);
+  font-size: 1.2rem;
+  line-height: 1;
+  padding: 2px 0;
+}
