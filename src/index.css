@@ -27,33 +27,22 @@ body {
   color: var(--color-navy);
 }
 
-/* ---- Section hero images (full, not cropped) ---- */
-.section-hero {
-  position: relative;
-  width: 100%;
-  overflow: hidden;
+/* ---- Section hero images (full, never cropped) ---- */
+.section-hero-title {
+  background: var(--color-navy);
+  padding: 1.5rem 2rem;
 }
 
-.section-hero img {
-  width: 100%;
-  height: auto;
-  display: block;
+.section-hero-title h2 {
+  font-family: var(--font-display);
+  color: var(--color-gold);
+  letter-spacing: 0.04em;
+  margin: 0;
 }
 
-.section-hero-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, rgba(13,27,42,0.92) 0%, rgba(13,27,42,0.5) 30%, transparent 60%);
-}
-
-.section-hero-content {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  z-index: 10;
-  padding: 2rem 2rem 2.5rem;
-  width: 100%;
-  max-width: 900px;
+.section-hero-title p {
+  color: rgba(255,255,255,0.7);
+  margin: 0.25rem 0 0;
 }
 
 /* ---- Building hotspots on the town map ---- */

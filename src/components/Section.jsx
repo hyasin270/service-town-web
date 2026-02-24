@@ -23,22 +23,27 @@ export default function Section({ id, title, subtitle, image, paragraphs, childr
 
   return (
     <section id={id} className="scroll-mt-0">
-      {/* Hero image — full width, not cropped */}
+      {/* Title bar — sits above the image */}
       {image && (
-        <div className="section-hero">
-          <img src={image} alt={title} />
-          <div className="section-hero-overlay" />
-          <div className="section-hero-content">
-            <h2 className="font-display text-4xl md:text-5xl text-gold tracking-wide mb-2">
+        <>
+          <div className="section-hero-title">
+            <h2 className="text-4xl md:text-5xl tracking-wide">
               {title}
             </h2>
             {subtitle && (
-              <p className="text-white/80 text-lg md:text-xl font-light">
+              <p className="text-lg md:text-xl font-light">
                 {subtitle}
               </p>
             )}
           </div>
-        </div>
+
+          {/* Full image — plain img, no wrapper, no clipping */}
+          <img
+            src={image}
+            alt={title}
+            className="w-full h-auto block"
+          />
+        </>
       )}
 
       {/* Content area */}
