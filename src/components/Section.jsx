@@ -23,12 +23,10 @@ export default function Section({ id, title, subtitle, image, paragraphs, childr
 
   return (
     <section id={id} className="scroll-mt-0">
-      {/* Hero image */}
+      {/* Hero image — full width, not cropped */}
       {image && (
-        <div
-          className="section-hero"
-          style={{ backgroundImage: `url(${image})` }}
-        >
+        <div className="section-hero">
+          <img src={image} alt={title} />
           <div className="section-hero-overlay" />
           <div className="section-hero-content">
             <h2 className="font-display text-4xl md:text-5xl text-gold tracking-wide mb-2">
