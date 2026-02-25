@@ -1,3 +1,4 @@
+import React from 'react';
 import { sections } from './data/content';
 import { quizzes } from './data/quizzes';
 import SideNav from './components/SideNav';
@@ -8,6 +9,45 @@ import CommentBox from './components/CommentBox';
 import Quiz from './components/Quiz';
 import PillarTabs from './components/PillarTabs';
 import BuildingCards from './components/BuildingCard';
+
+function LessonPlanExamples() {
+  const [expanded, setExpanded] = React.useState(null);
+  const plans = [
+    { id: 'lp1', label: 'LP 1: Structured HTML Weekly Plan', src: '/images/lesson-plans/lp1_photosynthesis.png', desc: 'Photosynthesis — multi-section weekly overview with Oral Language, Science, Reading, Writing blocks. Generated via hellorumi.ai.' },
+    { id: 'lp2', label: 'LP 2: WhatsApp Text Lesson Plan', src: '/images/lesson-plans/lp2_whatsapp.png', desc: 'Sent as plain text on WhatsApp. No formatting structure, no tracking, no feedback mechanism.' },
+    { id: 'lp3', label: 'LP 3: Basic Web Lesson Plan', src: '/images/lesson-plans/lp3_fractions.png', desc: 'Fractions — simple web page with SLO, Hook, and content. Different format, different structure, no shared spine.' },
+  ];
+
+  return (
+    <div className="fade-in mb-8">
+      <p className="font-display text-2xl text-navy tracking-wide mb-1">The Problem Without Standards</p>
+      <p className="text-navy/60 text-sm mb-4">Three lesson plans. Three different formats. Three different places. No coherent spine. No shared pedagogical standards. No tracking for effectiveness.</p>
+      <div className="space-y-2">
+        {plans.map(lp => (
+          <div key={lp.id} className="border border-dusty/30 rounded-lg overflow-hidden bg-white">
+            <button
+              className="w-full flex items-center gap-3 px-4 py-3 text-left hover:bg-gold/5 transition-colors"
+              onClick={() => setExpanded(expanded === lp.id ? null : lp.id)}
+            >
+              <span className="text-gold text-lg">{expanded === lp.id ? '▾' : '▸'}</span>
+              <span className="font-semibold text-navy text-sm flex-1">{lp.label}</span>
+              <span className="text-navy/40 text-xs">click to {expanded === lp.id ? 'collapse' : 'expand'}</span>
+            </button>
+            {expanded === lp.id && (
+              <div className="px-4 pb-4">
+                <p className="text-navy/50 text-xs mb-3 italic">{lp.desc}</p>
+                <img src={lp.src} alt={lp.label} className="w-full h-auto rounded border border-dusty/20 shadow-sm" />
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+      <p className="text-red-team/80 text-sm mt-3 font-medium">
+        This is what happens without a service. Each team invents its own format. None of them talk to each other.
+      </p>
+    </div>
+  );
+}
 
 function Divider({ icon = '⚙' }) {
   return (
@@ -29,11 +69,21 @@ function App() {
       <Section {...sections[0]}>
         {/* Sharper service definition callout */}
         <div className="callout-box fade-in mb-6">
-          <p className="font-semibold text-navy text-[1.05rem] mb-2">
-            The "One Week" Test
+          <p className="font-semibold text-navy text-[1.05rem] mb-3">
+            What Makes Something a Service?
           </p>
-          <p className="text-navy/75 text-[0.95rem] leading-relaxed">
-            If a forward deployed team could rebuild it in a week with an AI coding assistant, it's not a service — it's a <strong>feature</strong>. Features are fine. But they don't compound. A service has <em>pedagogical depth</em>, <em>technical depth</em>, and <em>data depth</em> that takes months to build right.
+          <p className="text-navy/75 text-[0.95rem] leading-relaxed mb-3">
+            Two things. It's <strong>central</strong> — it lives in the Armory, consumed by every Squad. And it's either:
+          </p>
+          <ul className="text-navy/70 text-[0.92rem] space-y-2 mb-3">
+            <li className="flex gap-2"><span className="text-gold font-bold">1.</span> <strong>Sufficiently complex</strong> — it encodes months of business logic, pedagogical research, or data normalization that no single FDS team could (or should) replicate</li>
+            <li className="flex gap-2"><span className="text-gold font-bold">2.</span> <strong>Abnormally simple and accessible</strong> — it delivers a unique flow (often on WhatsApp) that the forward deployed team finds inherently useful. Not because they're lazy — because it's genuinely valuable and they can't be bothered to rebuild it</li>
+          </ul>
+          <p className="text-navy/75 text-[0.95rem] leading-relaxed mb-2">
+            The value lives in one of three places: <em>complex business logic</em> that's been carefully imported, <em>technical + pedagogical soundness</em> validated against <a href="#standards-gate" className="text-gold underline hover:text-gold/80">the standards below</a>, or a <em>unique delivery mechanism</em> that people actually want.
+          </p>
+          <p className="text-navy/60 text-[0.88rem] leading-relaxed italic">
+            If a forward deployed team could rebuild it in a week with an AI coding assistant, it's a feature, not a service. Features are fine. But they don't compound.
           </p>
         </div>
         <Quiz quiz={quizzes.serviceVsFeature} />
@@ -73,6 +123,21 @@ function App() {
         <div className="callout-box fade-in mb-6">
           <p className="text-navy/75 text-[0.95rem] leading-relaxed">
             <strong>This isn't a hierarchy. It's a supply chain.</strong> The Squad discovers needs. The Armory centralizes solutions. The Squad consumes them and sends feedback. Repeat. The whole system only works when both teams stay connected.
+          </p>
+        </div>
+
+        <div className="callout-box blue fade-in mb-6">
+          <p className="font-semibold text-navy text-[1.05rem] mb-2">
+            Who Owns the Front-End?
+          </p>
+          <p className="text-navy/75 text-[0.95rem] leading-relaxed mb-2">
+            The customer of the Services team is the FDS team. The product is measured by <strong>accessibility</strong> and <strong>how quickly people in FDS can use it</strong>.
+          </p>
+          <p className="text-navy/75 text-[0.95rem] leading-relaxed mb-2">
+            FDS teams often build their own front-ends — that's expected and encouraged. But <a href="#three-pillars" className="text-blu-team underline hover:text-blu-team/80">Product Standards</a> still apply: they measure the usability of what you've built, its accessibility for the forward deployed team, and ultimately for the end user.
+          </p>
+          <p className="text-navy/75 text-[0.95rem] leading-relaxed">
+            The Services team owns the service — the back-end, the logic, the data. Their jurisdiction extends to ensuring the <em>interface</em> is consumable. The FDS team owns the last mile. The line is drawn at consumption: the service must be so good that field teams <strong>want</strong> to use it as-is.
           </p>
         </div>
 
@@ -131,6 +196,9 @@ function App() {
 
       {/* Section 5: Standards Gate */}
       <Section {...sections[4]}>
+        {/* Lesson plan examples — the problem */}
+        <LessonPlanExamples />
+
         {/* Why standards matter — new callout */}
         <div className="callout-box fade-in mb-6">
           <p className="font-semibold text-navy text-[1.05rem] mb-2">

@@ -24,8 +24,8 @@ export const sections = [
       "The Armory (Internally Deployed / BLU) doesn't go to schools. They build the deep infrastructure that makes field work compoundable. Where the Squad optimizes for this teacher today, the Armory optimizes for every teacher tomorrow.",
       "This isn't a hierarchy. It's a supply chain. The Squad discovers needs. The Armory centralizes solutions. The Squad consumes them and sends feedback. Repeat. The whole system only works when both teams stay connected."
     ],
-    pollQuestion: 'Which team do you most identify with?',
-    pollOptions: ['RED — The Squad', 'BLU — The Armory', 'A bit of both'],
+    pollQuestion: 'What\'s the biggest friction between field teams and central services today?',
+    pollOptions: ['Services don\'t fit our context', 'Too slow to ship', 'We don\'t know what\'s available', 'No feedback loop'],
   },
   {
     id: 'armory',
@@ -113,10 +113,10 @@ export const sections = [
 ];
 
 export const buildings = [
-  { id: 'watchtower', name: 'Watchtower', service: 'Digital Coach', team: 'Digital Coach Team', consumers: 'Rawalpindi, Balochistan, FDE', status: 'Active', left: '3%', top: '15%', width: '22%', height: '55%' },
-  { id: 'library', name: 'Library', service: 'Lesson Plans', team: 'LP Team', consumers: 'Rawalpindi, NIETE, FDS', status: 'Active', left: '6%', top: '72%', width: '18%', height: '22%' },
-  { id: 'exam-hall', name: 'Examination Hall', service: 'Exam Generator', team: 'Assessment Team', consumers: 'Teachers via Rumi', status: 'Active', left: '38%', top: '68%', width: '20%', height: '20%' },
-  { id: 'registry', name: 'Registry Office', service: 'User Management', team: 'Programs & Ops', consumers: 'Regional teams', status: 'Active', left: '33%', top: '25%', width: '22%', height: '38%' },
-  { id: 'training', name: 'Training Grounds', service: 'Teacher Training', team: 'Training Team', consumers: 'Programs, coaches', status: 'Active', left: '72%', top: '55%', width: '25%', height: '35%' },
-  { id: 'observatory', name: 'Observatory', service: 'Data & Analytics', team: 'Data Team', consumers: 'Leadership, policy, research', status: 'Building', left: '70%', top: '8%', width: '27%', height: '45%' },
+  { id: 'watchtower', name: 'Watchtower', service: 'Digital Coach', team: 'Digital Coach Team', consumers: 'Rawalpindi, Balochistan, FDE', status: 'Active', left: '4%', top: '8%', width: '17%', height: '52%' },
+  { id: 'library', name: 'Library', service: 'Lesson Plans', team: 'LP Team', consumers: 'Rawalpindi, NIETE, FDS', status: 'Active', left: '2%', top: '64%', width: '21%', height: '30%' },
+  { id: 'registry', name: 'Registry Office', service: 'User Management', team: 'Programs & Ops', consumers: 'Regional teams', status: 'Active', left: '30%', top: '15%', width: '22%', height: '40%' },
+  { id: 'exam-hall', name: 'Examination Hall', service: 'Exam Generator', team: 'Assessment Team', consumers: 'Teachers via Rumi', status: 'Active', left: '30%', top: '58%', width: '24%', height: '32%' },
+  { id: 'observatory', name: 'Observatory', service: 'Data & Analytics', team: 'Data Team', consumers: 'Leadership, policy, research', status: 'Building', left: '63%', top: '3%', width: '20%', height: '44%' },
+  { id: 'training', name: 'Training Grounds', service: 'Teacher Training', team: 'Training Team', consumers: 'Programs, coaches', status: 'Active', left: '63%', top: '52%', width: '32%', height: '38%' },
 ];

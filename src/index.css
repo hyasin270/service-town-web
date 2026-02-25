@@ -49,18 +49,18 @@ body {
 .building-hotspot {
   position: absolute;
   cursor: pointer;
-  border: 2px solid transparent;
-  border-radius: 12px;
-  transition: all 0.35s ease;
+  border: none;
+  border-radius: 16px;
+  transition: all 0.4s ease;
   background: transparent;
 }
 
 .building-hotspot:hover {
-  border-color: rgba(212, 168, 67, 0.6);
-  background: radial-gradient(ellipse at center, rgba(212, 168, 67, 0.3) 0%, rgba(212, 168, 67, 0.08) 60%, transparent 100%);
+  background: radial-gradient(ellipse at center, rgba(212, 168, 67, 0.25) 0%, rgba(212, 168, 67, 0.06) 55%, transparent 80%);
   box-shadow:
-    0 0 20px rgba(212, 168, 67, 0.35),
-    inset 0 0 15px rgba(212, 168, 67, 0.15);
+    0 0 30px rgba(212, 168, 67, 0.3),
+    0 0 60px rgba(212, 168, 67, 0.1);
+  filter: brightness(1.05);
 }
 
 .building-hotspot .hotspot-label {
@@ -171,34 +171,62 @@ body {
   background: var(--color-dusty);
 }
 
-/* ---- Pillar tabs ---- */
-.pillar-tab {
-  padding: 0.5rem 1rem;
-  border-bottom: 3px solid transparent;
-  cursor: pointer;
-  font-weight: 600;
-  font-size: 0.9rem;
-  transition: all 0.2s;
-  color: #888;
+/* ---- Pillar jump nav (replaces tabs) ---- */
+.pillar-jump-nav {
+  display: flex;
+  gap: 8px;
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: var(--color-cream);
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(196, 160, 106, 0.2);
+  margin-bottom: 1.5rem;
 }
 
-.pillar-tab:hover {
+.pillar-jump-btn {
+  display: flex;
+  align-items: center;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  background: white;
+  border: 1px solid #e0d5c1;
+  color: #888;
+  transition: all 0.2s;
+  font-family: var(--font-body);
+}
+
+.pillar-jump-btn:hover {
+  border-color: var(--color-gold);
   color: var(--color-navy);
 }
 
-.pillar-tab.active-tech {
-  color: var(--color-blu-team);
-  border-color: var(--color-blu-team);
+.pillar-jump-active {
+  border-color: currentColor;
+  background: rgba(255,255,255,0.9);
+  font-weight: 700;
 }
 
-.pillar-tab.active-ped {
-  color: var(--color-red-team);
-  border-color: var(--color-red-team);
+/* Pillar sticky header */
+.pillar-sticky-header {
+  position: sticky;
+  top: 48px;
+  z-index: 15;
+  display: flex;
+  align-items: center;
+  padding: 10px 16px;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  backdrop-filter: blur(8px);
 }
 
-.pillar-tab.active-prod {
-  color: var(--color-gold);
-  border-color: var(--color-gold);
+/* Pillar section separator */
+.pillar-section + .pillar-section {
+  border-top: 2px solid rgba(196, 160, 106, 0.15);
+  padding-top: 2rem;
 }
 
 /* ---- TF2-themed decorative elements ---- */
