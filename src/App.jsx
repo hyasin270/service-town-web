@@ -9,6 +9,7 @@ import CommentBox from './components/CommentBox';
 import Quiz from './components/Quiz';
 import PillarTabs from './components/PillarTabs';
 import BuildingCards from './components/BuildingCard';
+import ScrollySection from './components/ScrollySection';
 
 function LessonPlanExamples() {
   const [expanded, setExpanded] = React.useState(null);
@@ -57,9 +58,26 @@ function Divider({ icon = '⚙' }) {
   );
 }
 
+function ScrollProgress() {
+  const [progress, setProgress] = React.useState(0);
+
+  React.useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      setProgress(docHeight > 0 ? (scrollTop / docHeight) * 100 : 0);
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  return <div className="scroll-progress" style={{ width: `${progress}%` }} />;
+}
+
 function App() {
   return (
     <div className="min-h-screen">
+      <ScrollProgress />
       <SideNav />
 
       {/* Hero — the town map IS the entry point, no duplicate title */}
@@ -151,37 +169,58 @@ function App() {
 
       <Divider icon="🔧" />
 
-      {/* Section 3: The Armory / Service Anatomy */}
+      {/* Section 3: The Armory / Service Anatomy — SCROLLYTELLING */}
       <Section {...sections[2]}>
-        <div className="fade-in grid grid-cols-1 md:grid-cols-2 gap-3 mb-6">
-          {[
-            { name: 'Front Counter', icon: '🚪', desc: 'Interface layer — APIs, UIs, agent/MCP interfaces. Three doors can lead to the same room.', color: 'border-gold' },
-            { name: 'The Forge', icon: '🔥', desc: 'Core logic — domain expertise encoded. The most important layer. Needs documentation more than clean code.', color: 'border-red-team' },
-            { name: 'The Vault', icon: '🏛', desc: 'Data layer — xAPI tracking, standardized storage, cross-regional normalization.', color: 'border-blu-team' },
-            { name: 'The Watchers', icon: '👁', desc: 'Observability — usage metrics, feedback loops, behavioral monitoring. How the service learns.', color: 'border-dusty' },
-          ].map(layer => (
-            <div key={layer.name} className={`p-5 bg-white rounded-lg border-l-4 ${layer.color} shadow-sm`}>
-              <h5 className="font-semibold text-navy text-sm flex items-center gap-2">
-                <span>{layer.icon}</span> {layer.name}
-              </h5>
-              <p className="text-xs text-navy/65 mt-2 leading-relaxed">{layer.desc}</p>
-            </div>
-          ))}
-        </div>
-
-        <div className="callout-box fade-in mb-6">
-          <p className="text-navy/75 text-[0.95rem] leading-relaxed">
-            <strong>Debugging with layers:</strong> When latency degrades → look at The Forge. When teachers aren't using it → look at the Front Counter. When you don't know either is happening → you forgot to build The Watchers.
-          </p>
-        </div>
-
-        <Quiz quiz={quizzes.brokenService} />
-        <Poll
-          sectionId={sections[2].id}
-          question={sections[2].pollQuestion}
-          options={sections[2].pollOptions}
+        <p className="fade-in text-navy/60 text-sm mb-2 font-medium uppercase tracking-wider">Scroll to explore each layer</p>
+        <ScrollySection
+          id="service-layers"
+          steps={[
+            {
+              image: '/images/interiors/front_counter.jpg',
+              icon: '🚪',
+              title: 'The Front Counter',
+              text: 'The interface layer — APIs, UIs, agent/MCP interfaces. The mistake people make is thinking the interface IS the service. It\'s not. Three different doors can lead to the same room.',
+              detail: 'A teacher on WhatsApp, an FDS engineer on an API, and Rumi as an agent all walk into the same service. The Front Counter decides how each one is greeted.',
+            },
+            {
+              image: '/images/interiors/the_forge.jpg',
+              icon: '🔥',
+              title: 'The Forge',
+              text: 'Core logic — and the most important layer. This is where domain expertise lives. Not in the code, but in the decisions the code encodes. This layer needs documentation more than it needs clean code.',
+              detail: 'The Forge for Lesson Plans encodes gradual release, recall integration, SNC alignment. Months of pedagogical research, hammered into logic.',
+            },
+            {
+              image: '/images/interiors/the_vault.jpg',
+              icon: '🏛',
+              title: 'The Vault',
+              text: 'Data layer — standardized storage, xAPI tracking, cross-regional normalization. Every interaction generates data. The Vault makes sure it\'s structured, comparable, and useful.',
+              detail: 'When comparing teacher performance across Rawalpindi and Balochistan, the Vault normalizes HOTS and FICO scores to the same 0-100 scale.',
+            },
+            {
+              image: '/images/interiors/the_watchers.jpg',
+              icon: '👁',
+              title: 'The Watchers',
+              text: 'Observability — usage metrics, feedback loops, behavioral monitoring. How the service learns. When you don\'t know latency degraded or teachers stopped using it, you forgot to build The Watchers.',
+              detail: 'Usage Metrics, Feedback Loops, Behavioral Signals. The Watchers see what humans miss — and ring the alarm bell before it\'s too late.',
+            },
+          ]}
         />
-        <CommentBox sectionId={sections[2].id} />
+
+        <div className="max-w-[720px] mx-auto px-6">
+          <div className="callout-box fade-in mb-6">
+            <p className="text-navy/75 text-[0.95rem] leading-relaxed">
+              <strong>Debugging with layers:</strong> When latency degrades → look at The Forge. When teachers aren't using it → look at the Front Counter. When you don't know either is happening → you forgot to build The Watchers.
+            </p>
+          </div>
+
+          <Quiz quiz={quizzes.brokenService} />
+          <Poll
+            sectionId={sections[2].id}
+            question={sections[2].pollQuestion}
+            options={sections[2].pollOptions}
+          />
+          <CommentBox sectionId={sections[2].id} />
+        </div>
       </Section>
 
       <Divider icon="🏗" />

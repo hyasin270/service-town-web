@@ -11,11 +11,29 @@ const colorMap = {
 
 function PillarSection({ pillarKey }) {
   const [expandedStandard, setExpandedStandard] = useState(null);
+  const sectionRef = useRef(null);
   const pillar = pillars[pillarKey];
   const colors = colorMap[pillarKey];
 
+  useEffect(() => {
+    if (!sectionRef.current) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      },
+      { threshold: 0.05, rootMargin: '0px 0px -30px 0px' }
+    );
+    const elements = sectionRef.current.querySelectorAll('.fade-in');
+    elements.forEach(el => observer.observe(el));
+    return () => observer.disconnect();
+  }, [pillarKey]);
+
   return (
-    <div id={`pillar-${pillarKey}`} className="pillar-section fade-in">
+    <div id={`pillar-${pillarKey}`} ref={sectionRef} className="pillar-section fade-in">
       {/* Pillar header — sticky on scroll */}
       <div className={`pillar-sticky-header ${colors.headerBg}`}>
         <span className={`stamp ${colors.text} text-xs`}>{pillar.name}</span>
@@ -34,12 +52,12 @@ function PillarSection({ pillarKey }) {
       {/* Description */}
       <p className="text-navy/70 mb-5 text-[0.95rem]">{pillar.description}</p>
 
-      {/* Standards list — expandable accordion */}
-      <div className="space-y-2 mb-2">
-        {pillar.standards.map(s => {
+      {/* Standards list — expandable accordion with staggered reveal */}
+      <div className="space-y-2 mb-2 stagger-fade">
+        {pillar.standards.map((s, idx) => {
           const isExpanded = expandedStandard === s.id;
           return (
-            <div key={s.id} className={`standard-accordion ${isExpanded ? colors.border : ''}`}>
+            <div key={s.id} className={`standard-accordion fade-in ${isExpanded ? colors.border : ''}`} style={{ transitionDelay: `${idx * 80}ms` }}>
               <button
                 className="standard-accordion-header"
                 onClick={() => setExpandedStandard(isExpanded ? null : s.id)}

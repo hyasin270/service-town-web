@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react';
 
 export default function Section({ id, title, subtitle, image, paragraphs, children }) {
   const contentRef = useRef(null);
+  const imageRef = useRef(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -12,7 +13,7 @@ export default function Section({ id, title, subtitle, image, paragraphs, childr
           }
         });
       },
-      { threshold: 0.1 }
+      { threshold: 0.08, rootMargin: '0px 0px -50px 0px' }
     );
 
     const elements = contentRef.current?.querySelectorAll('.fade-in');
@@ -20,6 +21,21 @@ export default function Section({ id, title, subtitle, image, paragraphs, childr
 
     return () => observer.disconnect();
   }, []);
+
+  // Zoom-in effect on section images when they enter viewport
+  useEffect(() => {
+    if (!imageRef.current) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('section-image-visible');
+        }
+      },
+      { threshold: 0.2 }
+    );
+    observer.observe(imageRef.current);
+    return () => observer.disconnect();
+  }, [image]);
 
   return (
     <section id={id} className="scroll-mt-0">
@@ -37,12 +53,14 @@ export default function Section({ id, title, subtitle, image, paragraphs, childr
             )}
           </div>
 
-          {/* Full image — plain img, no wrapper, no clipping */}
-          <img
-            src={image}
-            alt={title}
-            className="w-full h-auto block"
-          />
+          {/* Full image with entrance animation */}
+          <div ref={imageRef} className="section-image-container">
+            <img
+              src={image}
+              alt={title}
+              className="w-full h-auto block"
+            />
+          </div>
         </>
       )}
 
@@ -52,7 +70,7 @@ export default function Section({ id, title, subtitle, image, paragraphs, childr
           <p
             key={i}
             className="fade-in text-navy/85 text-[1.05rem] leading-relaxed mb-6"
-            style={{ transitionDelay: `${i * 100}ms` }}
+            style={{ transitionDelay: `${i * 120}ms` }}
           >
             {p}
           </p>
