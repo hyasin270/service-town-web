@@ -9,14 +9,13 @@ import CommentBox from './components/CommentBox';
 import Quiz from './components/Quiz';
 import PillarTabs from './components/PillarTabs';
 import BuildingCards from './components/BuildingCard';
-import ScrollySection from './components/ScrollySection';
 
 function LessonPlanExamples() {
   const [expanded, setExpanded] = React.useState(null);
   const plans = [
-    { id: 'lp1', label: 'LP 1: Structured HTML Weekly Plan', src: '/images/lesson-plans/lp1_photosynthesis.png', desc: 'Photosynthesis — multi-section weekly overview with Oral Language, Science, Reading, Writing blocks. Generated via hellorumi.ai.' },
-    { id: 'lp2', label: 'LP 2: WhatsApp Text Lesson Plan', src: '/images/lesson-plans/lp2_whatsapp.png', desc: 'Sent as plain text on WhatsApp. No formatting structure, no tracking, no feedback mechanism.' },
-    { id: 'lp3', label: 'LP 3: Basic Web Lesson Plan', src: '/images/lesson-plans/lp3_fractions.png', desc: 'Fractions — simple web page with SLO, Hook, and content. Different format, different structure, no shared spine.' },
+    { id: 'lp1', label: 'Rumi Lesson Plan', src: '/images/lesson-plans/lp1_photosynthesis.png', desc: 'Photosynthesis — multi-section weekly overview with Oral Language, Science, Reading, Writing blocks. Generated via hellorumi.ai.' },
+    { id: 'lp2', label: 'Zavia Lesson Plan', src: '/images/lesson-plans/lp2_whatsapp.png', desc: 'Sent as plain text on WhatsApp. No formatting structure, no tracking, no feedback mechanism.' },
+    { id: 'lp3', label: 'UGLP Lesson Plan', src: '/images/lesson-plans/lp3_fractions.png', desc: 'Fractions — simple web page with SLO, Hook, and content. Different format, different structure, no shared spine.' },
   ];
 
   return (
@@ -46,6 +45,43 @@ function LessonPlanExamples() {
       <p className="text-red-team/80 text-sm mt-3 font-medium">
         This is what happens without a service. Each team invents its own format. None of them talk to each other.
       </p>
+    </div>
+  );
+}
+
+function ServiceLayer({ image, title, subtitle, text, detail }) {
+  const imgRef = React.useRef(null);
+
+  React.useEffect(() => {
+    if (!imgRef.current) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('section-image-visible');
+        }
+      },
+      { threshold: 0.2 }
+    );
+    observer.observe(imgRef.current);
+    return () => observer.disconnect();
+  }, [image]);
+
+  return (
+    <div className="mb-10">
+      {/* Layer title bar */}
+      <div className="bg-navy/90 px-6 py-3">
+        <h3 className="font-display text-2xl md:text-3xl text-gold tracking-wide">{title}</h3>
+        {subtitle && <p className="text-white/60 text-sm">{subtitle}</p>}
+      </div>
+      {/* Full-width image with entrance animation */}
+      <div ref={imgRef} className="section-image-container">
+        <img src={image} alt={title} className="w-full h-auto block" />
+      </div>
+      {/* Text content below */}
+      <div className="max-w-[720px] mx-auto px-6 py-6">
+        <p className="fade-in text-navy/85 text-[1.05rem] leading-relaxed mb-3">{text}</p>
+        <p className="fade-in text-navy/60 text-[0.92rem] leading-relaxed italic">{detail}</p>
+      </div>
     </div>
   );
 }
@@ -169,58 +205,57 @@ function App() {
 
       <Divider icon="🔧" />
 
-      {/* Section 3: The Armory / Service Anatomy — SCROLLYTELLING */}
+      {/* Section 3: The Armory / Service Anatomy — Four Layers */}
       <Section {...sections[2]}>
-        <p className="fade-in text-navy/60 text-sm mb-2 font-medium uppercase tracking-wider">Scroll to explore each layer</p>
-        <ScrollySection
-          id="service-layers"
-          steps={[
-            {
-              image: '/images/interiors/front_counter.jpg',
-              icon: '🚪',
-              title: 'The Front Counter',
-              text: 'The interface layer — APIs, UIs, agent/MCP interfaces. The mistake people make is thinking the interface IS the service. It\'s not. Three different doors can lead to the same room.',
-              detail: 'A teacher on WhatsApp, an FDS engineer on an API, and Rumi as an agent all walk into the same service. The Front Counter decides how each one is greeted.',
-            },
-            {
-              image: '/images/interiors/the_forge.jpg',
-              icon: '🔥',
-              title: 'The Forge',
-              text: 'Core logic — and the most important layer. This is where domain expertise lives. Not in the code, but in the decisions the code encodes. This layer needs documentation more than it needs clean code.',
-              detail: 'The Forge for Lesson Plans encodes gradual release, recall integration, SNC alignment. Months of pedagogical research, hammered into logic.',
-            },
-            {
-              image: '/images/interiors/the_vault.jpg',
-              icon: '🏛',
-              title: 'The Vault',
-              text: 'Data layer — standardized storage, xAPI tracking, cross-regional normalization. Every interaction generates data. The Vault makes sure it\'s structured, comparable, and useful.',
-              detail: 'When comparing teacher performance across Rawalpindi and Balochistan, the Vault normalizes HOTS and FICO scores to the same 0-100 scale.',
-            },
-            {
-              image: '/images/interiors/the_watchers.jpg',
-              icon: '👁',
-              title: 'The Watchers',
-              text: 'Observability — usage metrics, feedback loops, behavioral monitoring. How the service learns. When you don\'t know latency degraded or teachers stopped using it, you forgot to build The Watchers.',
-              detail: 'Usage Metrics, Feedback Loops, Behavioral Signals. The Watchers see what humans miss — and ring the alarm bell before it\'s too late.',
-            },
-          ]}
+        {/* Layer 1: The Front Counter */}
+        <ServiceLayer
+          image="/images/interiors/front_counter.jpg"
+          title="The Front Counter"
+          subtitle="The Interface Layer"
+          text="APIs, UIs, agent/MCP interfaces. The mistake people make is thinking the interface IS the service. It's not. Three different doors can lead to the same room."
+          detail="A teacher on WhatsApp, an FDS engineer on an API, and Rumi as an agent all walk into the same service. The Front Counter decides how each one is greeted."
         />
 
-        <div className="max-w-[720px] mx-auto px-6">
-          <div className="callout-box fade-in mb-6">
-            <p className="text-navy/75 text-[0.95rem] leading-relaxed">
-              <strong>Debugging with layers:</strong> When latency degrades → look at The Forge. When teachers aren't using it → look at the Front Counter. When you don't know either is happening → you forgot to build The Watchers.
-            </p>
-          </div>
+        {/* Layer 2: The Forge */}
+        <ServiceLayer
+          image="/images/interiors/the_forge.jpg"
+          title="The Forge"
+          subtitle="The Core Logic Layer"
+          text="The most important layer. This is where domain expertise lives. Not in the code, but in the decisions the code encodes. This layer needs documentation more than it needs clean code."
+          detail="The Forge for Lesson Plans encodes gradual release, recall integration, SNC alignment. Months of pedagogical research, hammered into logic."
+        />
 
-          <Quiz quiz={quizzes.brokenService} />
-          <Poll
-            sectionId={sections[2].id}
-            question={sections[2].pollQuestion}
-            options={sections[2].pollOptions}
-          />
-          <CommentBox sectionId={sections[2].id} />
+        {/* Layer 3: The Vault */}
+        <ServiceLayer
+          image="/images/interiors/the_vault.jpg"
+          title="The Vault"
+          subtitle="The Data Layer"
+          text="Standardized storage, xAPI tracking, cross-regional normalization. Every interaction generates data. The Vault makes sure it's structured, comparable, and useful."
+          detail="When comparing teacher performance across Rawalpindi and Balochistan, the Vault normalizes HOTS and FICO scores to the same 0-100 scale."
+        />
+
+        {/* Layer 4: The Watchers */}
+        <ServiceLayer
+          image="/images/interiors/the_watchers.jpg"
+          title="The Watchers"
+          subtitle="The Observability Layer"
+          text="Usage metrics, feedback loops, behavioral monitoring. How the service learns. When you don't know latency degraded or teachers stopped using it, you forgot to build The Watchers."
+          detail="Usage Metrics, Feedback Loops, Behavioral Signals. The Watchers see what humans miss — and ring the alarm bell before it's too late."
+        />
+
+        <div className="callout-box fade-in mb-6">
+          <p className="text-navy/75 text-[0.95rem] leading-relaxed">
+            <strong>Debugging with layers:</strong> When latency degrades → look at The Forge. When teachers aren't using it → look at the Front Counter. When you don't know either is happening → you forgot to build The Watchers.
+          </p>
         </div>
+
+        <Quiz quiz={quizzes.brokenService} />
+        <Poll
+          sectionId={sections[2].id}
+          question={sections[2].pollQuestion}
+          options={sections[2].pollOptions}
+        />
+        <CommentBox sectionId={sections[2].id} />
       </Section>
 
       <Divider icon="🏗" />

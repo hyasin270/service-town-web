@@ -52,12 +52,12 @@ function PillarSection({ pillarKey }) {
       {/* Description */}
       <p className="text-navy/70 mb-5 text-[0.95rem]">{pillar.description}</p>
 
-      {/* Standards list — expandable accordion with staggered reveal */}
-      <div className="space-y-2 mb-2 stagger-fade">
+      {/* Standards list — expandable accordion */}
+      <div className="space-y-2 mb-2">
         {pillar.standards.map((s, idx) => {
           const isExpanded = expandedStandard === s.id;
           return (
-            <div key={s.id} className={`standard-accordion fade-in ${isExpanded ? colors.border : ''}`} style={{ transitionDelay: `${idx * 80}ms` }}>
+            <div key={s.id} className={`standard-accordion ${isExpanded ? colors.border : ''}`}>
               <button
                 className="standard-accordion-header"
                 onClick={() => setExpandedStandard(isExpanded ? null : s.id)}
