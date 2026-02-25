@@ -448,26 +448,26 @@ body {
   gap: 0;
 }
 
-/* Desktop: side by side */
+/* Desktop: side by side, balanced */
 @media (min-width: 768px) {
   .scrolly-container {
     flex-direction: row;
   }
 
   .scrolly-sticky {
-    flex: 0 0 55%;
+    flex: 0 0 50%;
     position: sticky;
     top: 0;
     height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 1rem;
+    padding: 2rem;
   }
 
   .scrolly-steps {
-    flex: 0 0 45%;
-    padding: 2rem 1.5rem;
+    flex: 0 0 50%;
+    padding: 2rem 2rem;
   }
 }
 
@@ -499,7 +499,7 @@ body {
 .scrolly-image-wrap {
   position: relative;
   width: 100%;
-  max-width: 600px;
+  max-width: 100%;
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 8px 30px rgba(0,0,0,0.15);
