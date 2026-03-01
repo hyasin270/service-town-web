@@ -35,19 +35,19 @@ export default function TownMap() {
         {/* Overlay with entry text at bottom */}
         <div className="absolute inset-0 bg-gradient-to-t from-navy/80 via-navy/20 to-transparent pointer-events-none" />
         <div className="absolute bottom-0 left-0 w-full text-center pb-8 pointer-events-none">
-          <h1 className="font-display text-5xl md:text-7xl text-gold tracking-wider drop-shadow-lg mb-2">
-            SERVICE TOWN
+          <h1 className="font-display text-5xl md:text-7xl text-gold tracking-tight drop-shadow-lg mb-2">
+            Service Town
           </h1>
-          <p className="text-white/75 text-base md:text-lg max-w-md mx-auto">
+          <p className="text-white/75 text-base md:text-lg max-w-md mx-auto font-ui">
             An interactive guide to Taleemabad's services &amp; standards framework
           </p>
-          <p className="text-white/40 text-xs mt-2 animate-bounce">
+          <p className="text-white/40 text-xs mt-2 animate-bounce font-ui">
             Scroll to explore ↓
           </p>
           <div className="mt-3 pointer-events-auto">
             <a
               href="#town-square"
-              className="inline-block px-7 py-2.5 bg-gold text-navy font-semibold rounded-lg hover:bg-gold/90 transition-all text-sm tracking-wider uppercase shadow-lg"
+              className="inline-block px-7 py-2.5 bg-gold text-navy font-semibold rounded-lg hover:bg-gold/90 transition-all text-sm tracking-wider uppercase shadow-lg font-ui"
               onClick={(e) => {
                 e.preventDefault();
                 document.getElementById('town-square')?.scrollIntoView({ behavior: 'smooth' });

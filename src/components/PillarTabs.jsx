@@ -4,9 +4,9 @@ import { pillars } from '../data/pillars';
 const pillarKeys = ['technical', 'pedagogical', 'product'];
 
 const colorMap = {
-  technical: { badge: 'bg-blu-team', accent: 'border-blu-team', text: 'text-blu-team', light: 'bg-blu-team/5', border: 'border-l-4 border-blu-team', bg: 'bg-blu-team', headerBg: 'bg-blu-team/10' },
-  pedagogical: { badge: 'bg-red-team', accent: 'border-red-team', text: 'text-red-team', light: 'bg-red-team/5', border: 'border-l-4 border-red-team', bg: 'bg-red-team', headerBg: 'bg-red-team/10' },
-  product: { badge: 'bg-gold', accent: 'border-gold', text: 'text-gold', light: 'bg-gold/5', border: 'border-l-4 border-gold', bg: 'bg-gold', headerBg: 'bg-gold/10' },
+  technical: { badge: 'bg-blu-team', accent: 'border-blu-team', text: 'text-blu-team', light: 'bg-[rgba(91,143,192,0.08)]', border: 'border-l-4 border-blu-team', bg: 'bg-blu-team', headerBg: 'bg-[rgba(91,143,192,0.08)]' },
+  pedagogical: { badge: 'bg-red-team', accent: 'border-red-team', text: 'text-red-team', light: 'bg-[rgba(224,85,80,0.08)]', border: 'border-l-4 border-red-team', bg: 'bg-red-team', headerBg: 'bg-[rgba(224,85,80,0.08)]' },
+  product: { badge: 'bg-gold', accent: 'border-gold', text: 'text-gold', light: 'bg-[rgba(212,168,67,0.08)]', border: 'border-l-4 border-gold', bg: 'bg-gold', headerBg: 'bg-[rgba(212,168,67,0.08)]' },
 };
 
 function PillarSection({ pillarKey }) {
@@ -37,7 +37,7 @@ function PillarSection({ pillarKey }) {
       {/* Pillar header — sticky on scroll */}
       <div className={`pillar-sticky-header ${colors.headerBg}`}>
         <span className={`stamp ${colors.text} text-xs`}>{pillar.name}</span>
-        <span className="font-display text-xl text-navy tracking-wide ml-3">{pillar.tagline}</span>
+        <span className="font-display text-xl text-text ml-3">{pillar.tagline}</span>
       </div>
 
       {/* Pillar image */}
@@ -50,7 +50,7 @@ function PillarSection({ pillarKey }) {
       </div>
 
       {/* Description */}
-      <p className="text-navy/70 mb-5 text-[0.95rem]">{pillar.description}</p>
+      <p className="text-text-secondary mb-5 text-[0.95rem]">{pillar.description}</p>
 
       {/* Standards list — expandable accordion */}
       <div className="space-y-2 mb-2">
@@ -66,12 +66,12 @@ function PillarSection({ pillarKey }) {
                   {s.id}
                 </span>
                 <div className="flex-1 min-w-0">
-                  <span className="font-semibold text-navy text-sm">{s.name}</span>
+                  <span className="font-semibold text-text text-sm">{s.name}</span>
                   {!isExpanded && (
-                    <span className="text-navy/50 text-sm ml-2 hidden md:inline">{s.detail}</span>
+                    <span className="text-text-muted text-sm ml-2 hidden md:inline">{s.detail}</span>
                   )}
                 </div>
-                <span className={`text-navy/30 text-sm transition-transform shrink-0 ${isExpanded ? 'rotate-180' : ''}`}>
+                <span className={`text-text-muted text-sm transition-transform shrink-0 ${isExpanded ? 'rotate-180' : ''}`}>
                   ▼
                 </span>
               </button>

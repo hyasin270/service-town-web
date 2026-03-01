@@ -33,11 +33,11 @@ export const sections = [
     subtitle: 'Four layers. Cut open any service and you should find them all.',
     image: '/images/s05_service_anatomy.jpg',
     paragraphs: [
-      "The Front Counter is the interface layer — APIs, UIs, agent/MCP interfaces. The mistake people make is thinking the interface IS the service. It's not. Three different doors can lead to the same room.",
-      "The Forge is the core logic layer — and it's the most important one. This is where domain expertise lives. Not in the code, but in the decisions the code encodes. This layer needs documentation more than it needs clean code, because the people changing it need to understand why the current decisions were made.",
-      "The Vault is the data layer — standardized storage, xAPI tracking, cross-regional normalization.",
-      "The Watchers are observability — usage metrics, feedback loops, behavioral monitoring. How the service learns.",
-      "Why four layers? When latency degrades, you look at the Forge. When teachers aren't using it, you look at the Front Counter. When you don't know any of this is happening, you look at the Watchers — and realize you forgot to build them."
+      "The Front Counter is the door you walk through — a teacher on WhatsApp, a coach on the NIETE app, an engineer calling an API. Three different people, three different entry points, same service underneath. The mistake people make is thinking the door IS the service. It's not.",
+      "The Forge is where domain expertise lives. Anyone can build a lesson plan generator in a weekend. But will it follow gradual release? Will it align to SNC 2020? Will it know what the students learned last week? The Forge encodes months of pedagogical research into logic. That's the depth that makes it a service.",
+      "The Vault standardizes how data is stored across regions — so that an observation score of 75 in Rawalpindi means the same thing as 75 in Balochistan. Without it, every comparison is manual cleanup.",
+      "The Watchers monitor what humans miss. When lesson plan generation slows from 30 seconds to 3 minutes, The Watchers flag it before a coach in the field has to complain on Monday about something that broke on Thursday.",
+      "When something goes wrong, the layers tell you where to look. Lesson plans too slow? The Forge. Teachers not using it? The Front Counter. Scores don't match across regions? The Vault. You didn't know about any of it? You forgot to build The Watchers."
     ],
     pollQuestion: 'Which layer do you think is most often neglected?',
     pollOptions: ['Front Counter (Interface)', 'The Forge (Core Logic)', 'The Vault (Data)', 'The Watchers (Observability)'],
@@ -78,7 +78,8 @@ export const sections = [
     paragraphs: [
       "Everything at Taleemabad traces back to one question: did the student learn? But you can't just measure outcomes. By the time you discover students in District X scored 20% lower, it's too late. You need the whole chain of leading indicators.",
       "Think of it as a series of questions, each building on the last. Who is the teacher? Who is the student? Did they show up? Did the teacher get the lesson plan? Did she teach it well? Did the students learn? Is the teacher growing over time?",
-      "We expect to measure all of this within our platforms — across 60 database tables, ~1,950 teachers, and 45,000+ daily interactions. When any link breaks, the data tells us where."
+      "We expect to measure all of this within our platforms — across 60 database tables, ~1,950 teachers, and 45,000+ daily interactions. When any link breaks, the data tells us where.",
+      "As more services come online across regions, their data converges into a centralized data layer — the Observatory. This isn't a new restriction on data access. It's the opposite: a unified, validated source of truth that replaces the current patchwork of databases with different schemas and no shared validation rules. Everyone who needs data — from policy researchers designing interventions to coaches tracking visits — gets access with the right guardrails."
     ],
     pollQuestion: 'Which part of the theory of change does your team focus on most?',
     pollOptions: ['Access & registration', 'Lesson plan delivery', 'Teaching quality (FICO)', 'Student outcomes'],
@@ -117,6 +118,6 @@ export const buildings = [
   { id: 'library', name: 'Library', service: 'Lesson Plans', team: 'LP Team', consumers: 'Rawalpindi, NIETE, FDS', status: 'Active', left: '2%', top: '64%', width: '21%', height: '30%' },
   { id: 'registry', name: 'Registry Office', service: 'User Management', team: 'Programs & Ops', consumers: 'Regional teams', status: 'Active', left: '30%', top: '15%', width: '22%', height: '40%' },
   { id: 'exam-hall', name: 'Examination Hall', service: 'Exam Generator', team: 'Assessment Team', consumers: 'Teachers via Rumi', status: 'Active', left: '30%', top: '58%', width: '24%', height: '32%' },
-  { id: 'observatory', name: 'Observatory', service: 'Data & Analytics', team: 'Data Team', consumers: 'Leadership, policy, research', status: 'Building', left: '63%', top: '3%', width: '20%', height: '44%' },
+  { id: 'observatory', name: 'Observatory', service: 'Data & Analytics (Centralized Data Layer)', team: 'Data Team', consumers: 'Policy & research, programs, leadership, service teams', status: 'Building', left: '63%', top: '3%', width: '20%', height: '44%' },
   { id: 'training', name: 'Training Grounds', service: 'Teacher Training', team: 'Training Team', consumers: 'Programs, coaches', status: 'Active', left: '63%', top: '52%', width: '32%', height: '38%' },
 ];

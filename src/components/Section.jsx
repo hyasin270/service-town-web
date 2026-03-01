@@ -65,11 +65,11 @@ export default function Section({ id, title, subtitle, image, paragraphs, childr
       )}
 
       {/* Content area */}
-      <div ref={contentRef} className="max-w-[720px] mx-auto px-6 py-12 md:py-16">
+      <div ref={contentRef} className="max-w-[680px] mx-auto px-6 py-16 md:py-24">
         {paragraphs?.map((p, i) => (
           <p
             key={i}
-            className="fade-in text-navy/85 text-[1.05rem] leading-relaxed mb-6"
+            className="fade-in text-text text-[1.125rem] leading-[1.8] mb-7"
             style={{ transitionDelay: `${i * 120}ms` }}
           >
             {p}

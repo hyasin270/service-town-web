@@ -31,21 +31,21 @@ export default function Quiz({ quiz }) {
   }
 
   return (
-    <div className="fade-in mt-8 p-6 bg-navy/[0.03] rounded-xl border-2 border-gold/30">
+    <div className="fade-in mt-8 p-6 bg-surface-alt rounded-xl border border-gold/30">
       <div className="flex items-center justify-between mb-2">
-        <h4 className="font-display text-xl text-gold tracking-wide">
+        <h4 className="font-display text-xl text-gold">
           {quiz.title}
         </h4>
-        <span className="text-xs text-navy/40 font-medium">
+        <span className="text-xs text-text-muted font-medium font-ui">
           {currentQ + 1} / {quiz.questions.length}
         </span>
       </div>
-      <p className="text-sm text-navy/60 mb-5">{quiz.description}</p>
+      <p className="text-sm text-text-secondary mb-5">{quiz.description}</p>
 
       {/* Scenario */}
-      <div className="bg-white p-4 rounded-lg border border-dusty/20 mb-4">
-        <p className="text-sm font-medium text-navy/50 mb-1">Scenario:</p>
-        <p className="text-navy/85">{q.scenario}</p>
+      <div className="bg-surface p-4 rounded-lg border border-border mb-4">
+        <p className="text-sm font-medium text-text-muted mb-1 font-ui">Scenario:</p>
+        <p className="text-text">{q.scenario}</p>
       </div>
 
       {/* Options */}
@@ -71,11 +71,11 @@ export default function Quiz({ quiz }) {
 
       {/* Feedback */}
       {showResult && (
-        <div className={`p-4 rounded-lg mb-4 ${isCorrect ? 'bg-green-50 border border-green-200' : 'bg-red-50 border border-red-200'}`}>
-          <p className="font-semibold text-sm mb-1">
+        <div className={`p-4 rounded-lg mb-4 ${isCorrect ? 'bg-[rgba(34,197,94,0.1)] border border-[rgba(34,197,94,0.3)]' : 'bg-[rgba(224,85,80,0.1)] border border-[rgba(224,85,80,0.3)]'}`}>
+          <p className="font-semibold text-sm mb-1 text-text">
             {isCorrect ? 'Correct!' : 'Not quite.'}
           </p>
-          <p className="text-sm text-navy/70">{q.explanation}</p>
+          <p className="text-sm text-text-secondary">{q.explanation}</p>
         </div>
       )}
 
@@ -84,19 +84,19 @@ export default function Quiz({ quiz }) {
         {answered && currentQ < quiz.questions.length - 1 && (
           <button
             onClick={next}
-            className="px-5 py-2 bg-gold text-navy text-sm font-semibold rounded-lg hover:bg-gold/90 transition-all"
+            className="px-5 py-2 bg-gold text-navy text-sm font-semibold font-ui rounded-lg hover:bg-gold/90 transition-all"
           >
             Next Question →
           </button>
         )}
         {allDone && (
           <div className="flex items-center gap-3">
-            <span className="text-sm font-semibold text-navy">
+            <span className="text-sm font-semibold text-text font-ui">
               Score: {score}/{quiz.questions.length}
             </span>
             <button
               onClick={reset}
-              className="text-sm text-navy/50 underline hover:text-navy"
+              className="text-sm text-text-muted underline hover:text-text font-ui"
             >
               Try again
             </button>
@@ -111,8 +111,8 @@ export default function Quiz({ quiz }) {
             key={i}
             className={`w-2 h-2 rounded-full transition-all ${
               i === currentQ ? 'bg-gold scale-125' :
-              answers[i] !== undefined ? (answers[i] === quiz.questions[i].correct ? 'bg-green-400' : 'bg-red-400') :
-              'bg-dusty/30'
+              answers[i] !== undefined ? (answers[i] === quiz.questions[i].correct ? 'bg-[#4ade80]' : 'bg-red-team') :
+              'bg-border'
             }`}
           />
         ))}

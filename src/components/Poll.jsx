@@ -18,7 +18,6 @@ export default function Poll({ sectionId, question, options }) {
   async function loadResults() {
     const votes = await getVotes(sectionId);
     if (votes.length === 0) {
-      // No Supabase connection — show local-only result
       setResults(null);
       return;
     }
@@ -41,11 +40,11 @@ export default function Poll({ sectionId, question, options }) {
   const total = results ? Object.values(results).reduce((a, b) => a + b, 0) : 0;
 
   return (
-    <div className="fade-in mt-8 p-6 bg-white rounded-xl border border-dusty/30 shadow-sm">
-      <h4 className="font-semibold text-navy text-sm uppercase tracking-wider mb-4">
+    <div className="fade-in mt-8 p-6 bg-surface rounded-xl border border-border">
+      <h4 className="font-semibold text-text-muted text-sm uppercase tracking-wider mb-4 font-ui">
         Quick Poll
       </h4>
-      <p className="text-navy/80 mb-4">{question}</p>
+      <p className="text-text mb-4">{question}</p>
 
       <div className="flex flex-wrap gap-2 mb-4">
         {options.map(option => (
@@ -61,7 +60,7 @@ export default function Poll({ sectionId, question, options }) {
       </div>
 
       {selected && !results && (
-        <p className="text-sm text-navy/50 italic">Vote recorded! (Connect Supabase for live results)</p>
+        <p className="text-sm text-text-muted italic">Vote recorded! (Connect Supabase for live results)</p>
       )}
 
       {results && total > 0 && (
@@ -71,15 +70,15 @@ export default function Poll({ sectionId, question, options }) {
             const pct = total > 0 ? Math.round((count / total) * 100) : 0;
             return (
               <div key={option} className="flex items-center gap-3">
-                <span className="text-xs font-medium text-navy/60 w-32 truncate">{option}</span>
+                <span className="text-xs font-medium font-ui text-text-secondary w-32 truncate">{option}</span>
                 <div className="flex-1 poll-bar">
                   <div className="poll-bar-fill" style={{ width: `${pct}%` }} />
                 </div>
-                <span className="text-xs font-semibold text-navy/70 w-10 text-right">{pct}%</span>
+                <span className="text-xs font-semibold font-ui text-text-secondary w-10 text-right">{pct}%</span>
               </div>
             );
           })}
-          <p className="text-xs text-navy/40 mt-2">{total} vote{total !== 1 ? 's' : ''}</p>
+          <p className="text-xs text-text-muted mt-2 font-ui">{total} vote{total !== 1 ? 's' : ''}</p>
         </div>
       )}
     </div>

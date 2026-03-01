@@ -40,7 +40,7 @@ export default function SideNav() {
           <div
             className={`sidenav-dot ${active === item.id ? 'active' : visited.has(item.id) ? 'visited' : ''}`}
           />
-          <span className="text-xs font-medium text-navy/0 group-hover:text-navy/80 transition-all whitespace-nowrap bg-white/90 px-2 py-0.5 rounded opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all duration-200">
+          <span className="text-xs font-medium font-ui text-text/0 group-hover:text-text/80 transition-all whitespace-nowrap bg-surface/90 px-2 py-0.5 rounded opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all duration-200">
             {item.title}
           </span>
         </a>
